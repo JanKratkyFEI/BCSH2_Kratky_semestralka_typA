@@ -1,3 +1,6 @@
+using BCSH2_Kratky_semestralka_typA.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace BCSH2_Kratky_semestralka_typA
 {
     public class Program
@@ -5,6 +8,12 @@ namespace BCSH2_Kratky_semestralka_typA
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //pøidání ApplicationDbContext a SQLite
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
