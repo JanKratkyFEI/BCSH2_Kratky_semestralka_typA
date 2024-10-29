@@ -2,7 +2,33 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+<main role="main" class="home_wallpaper">
+    <div class="backgroud-transparent-overlay"></div>
+    <div class="central-container">
+    <!-- Hlavní box s názvem-->
+<div class="title-box">
+    <h1>Guild Management System</h1>
+    <p class="subtitle">Semestrální práce - BCSH2_Kratky</p>
 </div>
+
+<!-- Boxy s tlačítky-->
+<div class="button-box">
+    <a href="Guilds/Index" class="btn btn-primary btn-lg">Seznam Guild</a>
+</div>
+
+<div class="button-box">
+    <a href="/Guilds/Create" class="btn btn-success btn-lg">Přidat Novou Gildu</a>
+
+</div>
+
+<div class="button-box">
+    <a href="/Home/Privacy" class="btn btn-info btn-lg"> O aplikaci</a>
+
+</div>
+
+    </div>
+</main>
