@@ -1,0 +1,11 @@
+﻿@model Guild
+
+<h2>Smazat gildu</h2>
+<p>Opravdu chcete smazat gildu @Model.Name?</p>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Ano, smazat</button>
+    <a href="/Guilds/Index" class="btn btn-secondary">Zpět</a>
+</form>
+

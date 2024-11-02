@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Guild>
+
+<h2>Seznam Guild</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th>Typ</th>
+            <th>Úroveň</th>
+            <th>Bohatství</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guild in Model)
+        {
+            <tr>
+                <td>@guild.Name</td>
+                <td>@guild.Type</td>
+                <td>@guild.Prestige</td>
+                <td>@guild.Wealth</td>
+                <td>
+                    <a href="/Guilds/Edit/@guild.Id" class="btn btn-warning">Upravit</a>
+                    <a href="/Guilds/Delete/@guild.Id" class="btn btn-danger">Smazat</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Guilds/Create" class="btn btn-primary">Přidat novou gildu</a>
+
