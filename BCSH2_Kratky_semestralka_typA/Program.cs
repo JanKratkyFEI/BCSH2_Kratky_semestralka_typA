@@ -20,6 +20,13 @@ namespace BCSH2_Kratky_semestralka_typA
 
             var app = builder.Build();
 
+            // Automatické vytvoøení databáze
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                db.Database.EnsureCreated(); // Vytvoøí databázi, pokud neexistuje
+            }
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
