@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\TreaureVaults\" />
+    <Folder Include="Views\Transactions\" />
+    <Folder Include="Views\Treasures\" />
+  </ItemGroup>
+
 </Project>

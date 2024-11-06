@@ -18,7 +18,9 @@ namespace BCSH2_Kratky_semestralka_typA.Models
         public string Type { get; set; }
 
         public string Danger { get; set; } 
-        public string Skill { get; set; } 
+        public int? ClassId { get; set; } //fk na Class
+        public Member Class { get; set; } //odkaz na Member pro ideální třídu
+
 
         [Required]
         public decimal Pay { get; set; } //odměna ukolu

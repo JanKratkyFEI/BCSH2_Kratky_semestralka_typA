@@ -71,3 +71,13 @@ body {
 .button-box .btn {
     width: 100%
 }
+
+/*Zvetšení fontu a mezery v menu */
+.navbar-nav . nav-item {
+    margin-right: 20px; /* zvìtší mezery mezi položkami */
+}
+.navbar-nav .nav-link {
+  font-size: 18px;
+}
+
+

@@ -1,0 +1,42 @@
+﻿@model Member
+
+<h2>Přidat nového člena</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Name">Jméno</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Surname">Příjmení</label>
+        <input type="text" class="form-control" id="Surname" name="Surname" value="@Model.Surname" />
+    </div>
+    <div class="form-group">
+        <label for="Rank">Rank</label>
+        <input type="text" class="form-control" id="Rank" name="Rank" value="@Model.Rank" required />
+    </div>
+    <div class="form-group">
+        <label for="Class">Class</label>
+        <input type="text" class="form-control" id="Class" name="Class" value="@Model.Class" required />
+    </div>
+    <div class="form-group">
+        <label for="GuildId">Gilda</label>
+        <select id="GuildId" name="GuildId" class="form-control">
+            <option value="">Vyberte gildu</option>
+            @if (ViewBag.Guilds is SelectList guildsList && guildsList.Any())
+            {
+                foreach (var guild in guildsList)
+                {
+                    <option value="@guild.Value">@guild.Text</option>
+                }
+            }
+            else
+            {
+                <option disabled>Žádné gildy nejsou dostupné</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Uložit</button>
+</form>
+

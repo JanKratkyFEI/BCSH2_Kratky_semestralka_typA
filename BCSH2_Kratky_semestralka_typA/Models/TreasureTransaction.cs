@@ -2,7 +2,7 @@
 
 namespace BCSH2_Kratky_semestralka_typA.Models
 {
-    public class TreasureVaultTransaction
+    public class TreasureTransaction
     {
         [Key]
         public int Id { get; set; }
@@ -20,5 +20,8 @@ namespace BCSH2_Kratky_semestralka_typA.Models
         public DateTime Date { get; set; } = DateTime.Now; //datum a čas transakce
 
         public string Description { get; set; } //popis
+
+        public int? MemberId { get; set; } //fk na Member
+        public Member Member { get; set; } //odkaz na Member
     }
 }

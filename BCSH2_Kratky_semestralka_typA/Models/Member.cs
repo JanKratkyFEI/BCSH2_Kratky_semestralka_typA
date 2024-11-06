@@ -5,17 +5,17 @@ namespace BCSH2_Kratky_semestralka_typA.Models
     public class Member
     {
         [Key]
-        public int Id { get; set; }
+        public int Id_Member { get; set; }
         [Required]
         [StringLength(50)]
-        public string FirstName {  get; set; }
+        public string Name {  get; set; }
         [StringLength(50)]
-        public string SurName { get; set; }
+        public string Surname { get; set; } //volitelný 
         [Required]
         [StringLength(50)]
-        public string Role { get; set; }
+        public string Rank { get; set; } //pozice  člena
 
-        public int Level { get; set; }
+        public string Class { get; set; } //povolání
         public int GuildId { get; set; } //FK
         public Guild Guild { get; set; }
     }

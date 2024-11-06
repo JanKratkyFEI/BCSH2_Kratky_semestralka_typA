@@ -12,6 +12,6 @@ namespace BCSH2_Kratky_semestralka_typA.Models
 
         public decimal GoldAmount { get; set; } // Celkový počet zlaťáků v pokladnici
 
-        public List<TreasureVaultTransaction> Transactions { get; set; }
+        public List<TreasureTransaction> Transactions { get; set; }
     }
 }

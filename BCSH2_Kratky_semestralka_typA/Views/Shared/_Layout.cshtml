@@ -1,49 +1,95 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BCSH2_Kratky_semestralka_typA</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BCSH2_Kratky_semestralka_typA.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - BCSH2_Kratky_semestralka_typA</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/BCSH2_Kratky_semestralka_typA.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BCSH2_Kratky_semestralka_typA</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+			<div class="container-fluid">
+				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="~/pics/GuildLogo.jpg" alt="Guild Management System" style="height: 75px;">
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+					<ul class="navbar-nav flex-grow-1">
+						<!-- Dropdown menu pro Zobrazit -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="indexDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Zobrazit
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="indexDropdown">
+								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Gildy</a></li>
+								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Členové</a></li>
+								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Úkoly</a></li>
+							</ul>
+						</li>
+						<!-- Dropdown pro Přidat -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Přidat
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="addDropdown">
+								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Create">Přidat Gildu</a></li>
+								<li><a class="dropdown-item" asp-controller="Members" asp-action="Create">Přidat Člena</a></li>
+								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Create">Přidat Quest</a></li>
+								<li><a class="dropdown-item" asp-controller="TreasureVault" asp-action="Create">Přidat Pokladnici</a></li>
+							</ul>
+						</li>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BCSH2_Kratky_semestralka_typA - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+						<!-- Dropdown pro Editovat -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="editDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Editovat
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="editDropdown">
+								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Editovat Gildu</a></li>
+								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Editovat Člena</a></li>
+								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Editovat Quest</a></li>
+								<li><a class="dropdown-item" asp-controller="TreasureVault" asp-action="Index">Editovat Pokladnici</a></li>
+							</ul>
+						</li>
+
+						<!-- Dropdown pro Smazat -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="deleteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Smazat
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="deleteDropdown">
+								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Smazat Gildu</a></li>
+								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Smazat Člena</a></li>
+								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Smazat Quest</a></li>
+								<li><a class="dropdown-item" asp-controller="TreasureVault" asp-action="Index">Smazat Pokladnici</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2024 - BCSH2_Kratky_semestralka_typA - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

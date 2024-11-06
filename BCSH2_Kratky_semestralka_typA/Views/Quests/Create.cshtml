@@ -4,47 +4,47 @@
 
 <form asp-action="Create">
     <div class="form-group">
-        <label for="Name">Název úkolu</label>
+        <label for="Name">Název úkolu:</label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="AssignedBy">Zadal</label>
+        <label for="AssignedBy">Zadal:</label>
         <input asp-for="AssignedBy" class="form-control" />
         <span asp-validation-for="AssignedBy" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="AcceptedBy">Přijal</label>
+        <label for="AcceptedBy">Přijal:</label>
         <input asp-for="AcceptedBy" class="form-control" />
         <span asp-validation-for="AcceptedBy" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="Type">Typ úkolu</label>
+        <label for="Type">Typ úkolu:</label>
         <input asp-for="Type" class="form-control" />
         <span asp-validation-for="Type" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="Danger">Nebezpečnost</label>
+        <label for="Danger">Nebezpečnost:</label>
         <input asp-for="Danger" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label for="Skill">Doporučená schopnost</label>
-        <input asp-for="Skill" class="form-control" />
+        <label for="Class">Doporučená profese:</label>
+        <input asp-for="Class" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label for="Pay">Odměna</label>
+        <label for="Pay">Odměna:</label>
         <input asp-for="Pay" class="form-control" />
         <span asp-validation-for="Pay" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="Description">Popis úkolu</label>
+        <label for="Description">Popis úkolu:</label>
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
 

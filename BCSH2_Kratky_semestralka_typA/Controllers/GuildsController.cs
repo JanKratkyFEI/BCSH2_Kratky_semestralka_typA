@@ -18,14 +18,19 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
         //akce na zobrazení seznamu gild
         public async Task<IActionResult> Index()
         {
-            var guilds = await _context.Guilds.ToListAsync();
-            return View(guilds);
+            var guilds = await _context.Guilds.ToListAsync(); //pokud fk na jinou tabulku
+            //Console.WriteLine($"Počet načtených gild: {guilds.Count}");
+            //foreach (var guild in guilds)
+            //{
+            //    Console.WriteLine($"Gilda: {guild.Name}, Typ: {guild.Type}, Prestiž: {guild.Prestige}");
+            //}
+            return View(guilds); //zobrazí do view
         }
 
         //akce na zobrazení formuláře nové guildy
         public IActionResult Create()
         {
-            return View();
+            return View(new Guild());
         }
 
         //Akce pr zpracování formuláře pro přidání nové gildy
@@ -35,9 +40,19 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(guild);
+                await _context.Guilds.AddAsync(guild);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+            if (!ModelState.IsValid)
+            {
+                foreach (var modelState in ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                }
             }
             return View(guild);
         }
@@ -63,7 +78,7 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Guild guild)
         {
-            if (id != guild.Id)
+            if (id != guild.Id_Guild)
             {
                 return NotFound();
             }

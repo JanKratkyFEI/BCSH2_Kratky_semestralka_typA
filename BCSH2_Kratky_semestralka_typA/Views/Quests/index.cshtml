@@ -1,52 +1,36 @@
-﻿@model Quest
+﻿@model IEnumerable<Quest>
 
-<h2>Přidat nový úkol</h2>
+<h2>Seznam Questů</h2>
 
-<form asp-action="Create">
-    <div class="form-group">
-        <label for="Name">Název úkolu</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th>Zadavatel</th>
+            <th>Přijato kým</th>
+            <th>Typ</th>
+            <th>Nebezpečnost</th>
+            <th>Odměna</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quest in Model)
+        {
+            <tr>
+                <td>@quest.Name</td>
+                <td>@quest.AssignedBy</td>
+                <td>@quest.AcceptedBy</td>
+                <td>@quest.Type</td>
+                <td>@quest.Danger</td>
+                <td>@quest.Pay</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@quest.Id" class="btn btn-warning">Upravit</a>
+                    <a asp-action="Delete" asp-route-id="@quest.Id" class="btn btn-danger">Smazat</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-    <div class="form-group">
-        <label for="AssignedBy">Zadal</label>
-        <input asp-for="AssignedBy" class="form-control" />
-        <span asp-validation-for="AssignedBy" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="AcceptedBy">Přijal</label>
-        <input asp-for="AcceptedBy" class="form-control" />
-        <span asp-validation-for="AcceptedBy" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="Type">Typ úkolu</label>
-        <input asp-for="Type" class="form-control" />
-        <span asp-validation-for="Type" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="Danger">Nebezpečnost</label>
-        <input asp-for="Danger" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label for="Skill">Doporučená schopnost</label>
-        <input asp-for="Skill" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label for="Pay">Odměna</label>
-        <input asp-for="Pay" class="form-control" />
-        <span asp-validation-for="Pay" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="Description">Popis úkolu</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-success">Přidat úkol</button>
-</form>
+<a asp-action="Create" class="btn btn-primary">Přidat nový quest</a>
