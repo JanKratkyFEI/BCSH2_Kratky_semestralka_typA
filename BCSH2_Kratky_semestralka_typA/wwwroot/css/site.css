@@ -92,7 +92,7 @@ p, h1, h2 {
 
 .dropdown-with-background {
     position: relative;
-    background: url('path_to_your_image.png') no-repeat center center;
+    background: url('/pics/pantheon.jpg') no-repeat center center;
     background-size: cover;
     padding: 15px;
     border-radius: 10px; /* Jemné zaoblení okrajù */
@@ -108,14 +108,14 @@ p, h1, h2 {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.2); /* Poloprùhledná èerná vrstva */
+        background: rgba(0, 0, 0, 0.25); /* Poloprùhledná èerná vrstva */
         z-index: 1; /* Pøekrıvá obrázek */
     }
 
     .dropdown-with-background .dropdown-item {
         position: relative; /* Zajišuje, e text je nad èernou vrstvou */
         z-index: 2; /* Text je nad pseudo-elementem */
-        background: rgba(0, 0, 0, 0.5); /* Jemné tmavé pozadí pod textem */
+        background: rgba(0, 0, 0, 0.85); /* Jemné tmavé pozadí pod textem */
         border-radius: 5px;
         color: white;
         padding: 8px 12px;
