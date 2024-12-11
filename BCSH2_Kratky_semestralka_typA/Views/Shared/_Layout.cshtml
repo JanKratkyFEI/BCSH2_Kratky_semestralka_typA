@@ -13,6 +13,11 @@
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/BCSH2_Kratky_semestralka_typA.styles.css" asp-append-version="true" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
 </head>
 <body>
 	<header>
@@ -32,12 +37,15 @@
 							<a class="nav-link dropdown-toggle" href="#" id="indexDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Zobrazit
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="indexDropdown">
+							<ul class="dropdown-menu dropdown-with-background" aria-labelledby="indexDropdown">
 								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Gildy</a></li>
 								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Členové</a></li>
 								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Úkoly</a></li>
 								<li><a class="dropdown-item" asp-controller="TreasureVaults" asp-action="Index">Pokladnice</a></li>
-
+								@* <!--obrázek test-->
+								<li class="dropdown-image">
+									<img src="~/pics/pantheon.jpg" alt="Background" class="dropdown-background" />
+								</li> *@
 							</ul>
 						</li>
 						<!-- Dropdown pro Přidat -->
@@ -61,16 +69,7 @@
 		</nav>
 	</header>
 
-	@* <!-- Audio element a kontrola hudby -->
-	<audio id="backgroundMusic" autoplay loop>
-		<source src="~/Audio/Eventide.mp3" type="audio/mpeg">
-		Váš prohlížeč nepodporuje přehrávání audia.
-	</audio>
-	<div id="musicControl" style="position: fixed; top: 10px; right: 10px;">
-		<button id="musicToggle" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">
-			🎵
-		</button>
-	</div> *@
+	
 
 
 	<div class="container">
