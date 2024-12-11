@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BCSH2_Kratky_semestralka_typA.Models
 {
@@ -15,8 +16,9 @@ namespace BCSH2_Kratky_semestralka_typA.Models
         public int Prestige { get; set; }
 
 
-        //public List<Member> Members { get; set; } = new List<Member>();
-        //public List<Quest> Quests { get; set; } = new List<Quest>();
-        //public TreasureVault TreasureVault { get; set; }
+        public List<Member> Members { get; set; } = new List<Member>();
+        public List<Quest> Quests { get; set; } = new List<Quest>();
+        [NotMapped] //navigační vlastnost se nebude mapovat ani validovat 
+        public List<TreasureVault> TreasureVault { get; set; } = new List<TreasureVault>();
     }
 }

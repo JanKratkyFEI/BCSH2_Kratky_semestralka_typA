@@ -9,6 +9,9 @@ namespace BCSH2_Kratky_semestralka_typA
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
+
             //pøidání ApplicationDbContext a SQLite
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));

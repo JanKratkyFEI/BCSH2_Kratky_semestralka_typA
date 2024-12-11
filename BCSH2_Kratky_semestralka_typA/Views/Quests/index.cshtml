@@ -19,11 +19,11 @@
         {
             <tr>
                 <td>@quest.Name</td>
-                <td>@quest.AssignedBy</td>
-                <td>@quest.AcceptedBy</td>
+                <td>@quest.Guild?.Name</td>
+                <td>@(quest.AcceptedBy != null ? $"{quest.AcceptedBy.Name} {quest.AcceptedBy.Surname}": "Nepřijato")</td>
                 <td>@quest.Type</td>
                 <td>@quest.Danger</td>
-                <td>@quest.Pay</td>
+                <td>@quest.Pay.ToString("C")</td> <!-- formátuje odměnu jako měnu-->
                 <td>
                     <a asp-action="Edit" asp-route-id="@quest.Id" class="btn btn-warning">Upravit</a>
                     <a asp-action="Delete" asp-route-id="@quest.Id" class="btn btn-danger">Smazat</a>

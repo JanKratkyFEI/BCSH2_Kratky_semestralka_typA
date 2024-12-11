@@ -2,53 +2,48 @@
 
 <h2>Upravit úkol</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
-        <label for="Name">Název úkolu</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+        <label for="Name">Název</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
     </div>
 
     <div class="form-group">
-        <label for="AssignedBy">Zadal</label>
-        <input asp-for="AssignedBy" class="form-control" />
-        <span asp-validation-for="AssignedBy" class="text-danger"></span>
+        <label for="GuildId">Zadavatel (Gilda)</label>
+        <select id="GuildId" name="GuildId" class="form-control" asp-items="ViewBag.Guilds" required>
+            <option value="">Vyberte gildu</option>
+        </select>
     </div>
 
     <div class="form-group">
-        <label for="AcceptedBy">Přijal</label>
-        <input asp-for="AcceptedBy" class="form-control" />
-        <span asp-validation-for="AcceptedBy" class="text-danger"></span>
+        <label for="AcceptedById">Přijato kým</label>
+        <select id="AcceptedById" name="AcceptedById" class="form-control" asp-items="ViewBag.Members">
+            <option value="">Vyberte člena</option>
+        </select>
     </div>
 
     <div class="form-group">
-        <label for="Type">Typ úkolu</label>
-        <input asp-for="Type" class="form-control" />
-        <span asp-validation-for="Type" class="text-danger"></span>
+        <label for="Type">Typ</label>
+        <input type="text" class="form-control" id="Type" name="Type" value="@Model.Type" required />
     </div>
 
     <div class="form-group">
         <label for="Danger">Nebezpečnost</label>
-        <input asp-for="Danger" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label for="Class">Doporučená profese</label>
-        <input asp-for="Class" class="form-control" />
+        <input type="text" class="form-control" id="Danger" name="Danger" value="@Model.Danger" />
     </div>
 
     <div class="form-group">
         <label for="Pay">Odměna</label>
-        <input asp-for="Pay" class="form-control" />
-        <span asp-validation-for="Pay" class="text-danger"></span>
+        <input type="number" class="form-control" asp-for="Pay" step="0.01" required />
     </div>
 
     <div class="form-group">
-        <label for="Description">Popis úkolu</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+        <label for="Description">Popis</label>
+        <textarea class="form-control" id="Description" name="Description">@Model.Description</textarea>
     </div>
 
-    <button type="submit" class="btn btn-success">Uložit změny</button>
+    <button type="submit" class="btn btn-primary">Uložit změny</button>
+    <a asp-action="Index" class="btn btn-secondary">Zpět na seznam</a>
 </form>

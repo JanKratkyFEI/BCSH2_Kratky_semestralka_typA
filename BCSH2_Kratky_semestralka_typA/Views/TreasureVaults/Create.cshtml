@@ -1,0 +1,34 @@
+﻿@model TreasureVault
+
+<h2>Přidat novou pokladnici</h2>
+
+@if (ViewBag.ValidationErrors != null && ViewBag.ValidationErrors.Count > 0)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewBag.ValidationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+
+
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="GuildId">Gilda</label>
+        <select id="GuildId" name="GuildId" class="form-control" asp-items="ViewBag.Guilds" required>
+            <option value="">Vyberte gildu</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="GoldAmount">Počet zlatých mincí</label>
+        <input type="number" class="form-control" id="GoldAmount" name="GoldAmount" value="@Model.GoldAmount" step="0.01" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Uložit</button>
+</form>
+

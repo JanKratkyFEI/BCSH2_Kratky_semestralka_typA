@@ -11,6 +11,7 @@ else {
             <th>Název</th>
             <th>Typ</th>
             <th>Prestiž</th>
+            <th>Akce</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +21,10 @@ else {
                 <td>@guild.Name</td>
                 <td>@guild.Type</td>
                 <td>@guild.Prestige</td>
-                
-             
+                <td>
+                        <a asp-action="Edit" asp-route-id="@guild.Id_Guild" class="btn btn-warning">Upravit</a>
+                        <a asp-action="Delete" asp-route-id="@guild.Id_Guild" class="btn btn-danger">Smazat</a>
+                </td>
             </tr>
         }
     </tbody>

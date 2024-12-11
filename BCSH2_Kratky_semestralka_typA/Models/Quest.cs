@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace BCSH2_Kratky_semestralka_typA.Models
 {
@@ -6,28 +7,33 @@ namespace BCSH2_Kratky_semestralka_typA.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Name { get; set; } //nazev questu
 
-        public string AssignedBy { get; set; } //kdo zadal
+        [Required]
+        public int GuildId { get; set; } //kdo zadal
+        [ValidateNever]
+        public Guild Guild { get; set; }
 
-        public string AcceptedBy { get; set; } //kdo přijal
+        public int? AcceptedById { get; set; } // FK na člena, který přijal
+        [ValidateNever]
+        public Member? AcceptedBy { get; set; } //Navigační vlastnost
 
         [Required]
         public string Type { get; set; }
-
         public string Danger { get; set; } 
-        public int? ClassId { get; set; } //fk na Class
-        public Member Class { get; set; } //odkaz na Member pro ideální třídu
-
+        
 
         [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "Odměna musí být kladná hodnota.")]
         public decimal Pay { get; set; } //odměna ukolu
         
         public string Description { get; set; } //popis ukolu
-   
-     public int GuildId { get; set; }
-        public Guild Guild { get; set; }
+
+        
+
+       
     }
 }

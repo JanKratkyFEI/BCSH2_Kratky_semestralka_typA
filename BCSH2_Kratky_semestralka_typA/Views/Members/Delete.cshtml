@@ -4,16 +4,16 @@
 
 <p>Opravdu chcete smazat následujícího člena?</p>
 
-<div>
+<div class="mb-3">
     <p><strong>Jméno:</strong> @Model.Name</p>
     <p><strong>Příjmení:</strong> @Model.Surname</p>
     <p><strong>Rank:</strong> @Model.Rank</p>
     <p><strong>Class:</strong> @Model.Class</p>
 </div>
 
-<form asp-action="DeleteConfirmed" method="post">
+<form asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id_Member" />
-    <button type="submit" class="btn btn-danger">Smazat</button>
-    <a asp-action="Index" class="btn btn-secondary">Zrušit</a>
+    <button type="submit" class="btn btn-outline-danger">Ano, smazat</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Ne, zrušit</a>
 </form>
 

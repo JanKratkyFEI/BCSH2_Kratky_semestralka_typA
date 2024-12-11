@@ -1,6 +1,7 @@
 ﻿using BCSH2_Kratky_semestralka_typA.Data;
 using BCSH2_Kratky_semestralka_typA.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class QuestsController : Controller
@@ -22,7 +23,10 @@ public class QuestsController : Controller
     // Akce pro zobrazení formuláře pro vytvoření nového úkolu
     public IActionResult Create()
     {
-        return View();
+        ViewBag.ValidationErrors = new List<string>(); // Prázdný seznam pro chyby validace
+        ViewBag.Guilds = new SelectList(_context.Guilds.ToList(), "Id_Guild", "Name");
+        ViewBag.Members = new SelectList(_context.Members.ToList(), "Id_Member", "Name");
+        return View(new Quest());
     }
 
     // Akce pro zpracování formuláře pro vytvoření nového úkolu
@@ -32,10 +36,21 @@ public class QuestsController : Controller
     {
         if (ModelState.IsValid)
         {
+            // Přidej quest do databáze a přesměruj na Index
             _context.Add(quest);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // Pokud validace selže, znovu nastav ViewBag a vrátíš chyby
+        ViewBag.ValidationErrors = ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+        ViewBag.Guilds = new SelectList(_context.Guilds.ToList(), "Id_Guild", "Name");
+        ViewBag.Members = new SelectList(_context.Members.ToList(), "Id_Member", "Name");
+
         return View(quest);
     }
 
@@ -46,12 +61,19 @@ public class QuestsController : Controller
         {
             return NotFound();
         }
+        var quest = await _context.Quests
+       .Include(q => q.Guild)
+       .Include(q => q.AcceptedBy) // Načteme data o členu, který přijal quest
+       .FirstOrDefaultAsync(q => q.Id == id);
 
-        var quest = await _context.Quests.FindAsync(id);
+      
         if (quest == null)
         {
             return NotFound();
         }
+
+        ViewBag.Guilds = new SelectList(_context.Guilds.ToList(), "Id_Guild", "Name", quest.GuildId);
+        ViewBag.Members = new SelectList(_context.Members.ToList(), "Id_Member", "Name", quest.AcceptedBy?.Id_Member); // Nastavíme výchozí hodnotu
         return View(quest);
     }
 
@@ -101,4 +123,52 @@ public class QuestsController : Controller
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
+
+    //akce na potvrzení ukolu členem gildy
+    public async Task<IActionResult> Accept(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var quest = await _context.Quests
+        .Include(quest => quest.Guild)
+        .FirstOrDefaultAsync(quest => quest.Id == id);
+
+        if (quest == null)
+        {
+            return NotFound();
+        }
+
+        ViewBag.Members = new SelectList(
+            _context.Members.Where(m => m.GuildId == quest.GuildId).ToList(),
+            "Id_Member",
+            "Name"
+            );
+
+        return View(quest);
+
+
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Accept(int id, int memberId)
+    {
+        var quest = await _context.Quests.FindAsync(id);
+
+        if (quest == null)
+        {
+            return NotFound();
+        }
+
+        quest.AcceptedById = memberId;
+
+        _context.Update(quest);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Index));
+    }
+
 }

@@ -1,26 +1,23 @@
 ﻿@model Guild
 
-<h2>Upravit gildu</h2>
+<h2>Upravit Gildu</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id_Guild" />
-        <div class="form-group">
-            <label for="Name">Název</label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="Type">Typ gildy</label>
-            <select asp-for="Type" asp-items="Html.GetEnumSelectList<GuildType>()" class="form-control"></select>
-            <span asp-validation-for="Type" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="Prestige">Prestiž (-100/100)</label>
-            <input asp-for="Prestige" type="number" class="form-control" />
-            <span asp-validation-for="Prestige" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="Name">Název</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Type">Typ</label>
+        <select asp-for="Type" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(GuildType)), Model.Type))">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Prestige">Prestiž</label>
+        <input type="number" class="form-control" id="Prestige" name="Prestige" value="@Model.Prestige" min="-100" max="100" required />
+    </div>
 
-        <button type="submit" class="btn btn-success">Přidat gildu</button>
+    <button type="submit" class="btn btn-primary">Uložit změny</button>
+    <a asp-action="Index" class="btn btn-secondary">Zrušit</a>
 </form>
-
-

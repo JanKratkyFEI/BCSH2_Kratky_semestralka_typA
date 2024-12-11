@@ -19,17 +19,14 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
         public async Task<IActionResult> Index()
         {
             var guilds = await _context.Guilds.ToListAsync(); //pokud fk na jinou tabulku
-            //Console.WriteLine($"Počet načtených gild: {guilds.Count}");
-            //foreach (var guild in guilds)
-            //{
-            //    Console.WriteLine($"Gilda: {guild.Name}, Typ: {guild.Type}, Prestiž: {guild.Prestige}");
-            //}
+            
             return View(guilds); //zobrazí do view
         }
 
         //akce na zobrazení formuláře nové guildy
         public IActionResult Create()
         {
+
             return View(new Guild());
         }
 
@@ -40,18 +37,17 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine("Model je validní, přidávám gildu...");
                 await _context.Guilds.AddAsync(guild);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             if (!ModelState.IsValid)
             {
-                foreach (var modelState in ModelState.Values)
+                Console.WriteLine("ModelState není validní:");
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    foreach (var error in modelState.Errors)
-                    {
-                        Console.WriteLine(error.ErrorMessage);
-                    }
+                    Console.WriteLine($"Chyba: {error.ErrorMessage}");
                 }
             }
             return View(guild);

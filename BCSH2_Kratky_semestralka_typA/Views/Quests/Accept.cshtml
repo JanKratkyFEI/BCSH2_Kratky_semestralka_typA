@@ -1,0 +1,17 @@
+﻿@model Quest
+
+<h2>Přijmout úkol: @Model.Name</h2>
+
+<form asp-action="Accept" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="MemberId">Člen gildy</label>
+        <select id="MemberId" name="memberId" class="form-control" asp-items="ViewBag.Members">
+            <option value="">Vyberte člena</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Přijmout úkol</button>
+</form>
+

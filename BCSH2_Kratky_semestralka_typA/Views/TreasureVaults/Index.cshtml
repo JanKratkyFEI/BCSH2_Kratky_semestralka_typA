@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TreasureVault>
+
+<h2>Seznam Pokladnic</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Žádné pokladnice nebyly nalezeny.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Gilda</th>
+                <th>Celkový stav (zlato)</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vault in Model)
+            {
+                <tr>
+                    <td>@vault.Id</td>
+                    <td>@vault.Guild?.Name</td>
+                    <td>@vault.GoldAmount.ToString("C")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@vault.Id" class="btn btn-warning">Upravit</a>
+                        <a asp-action="Delete" asp-route-id="@vault.Id" class="btn btn-danger">Smazat</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="/TreasureVaults/Create" class="btn btn-primary">Přidat novou pokladnici</a>
