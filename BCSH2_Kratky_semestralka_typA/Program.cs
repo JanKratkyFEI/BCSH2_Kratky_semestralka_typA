@@ -16,7 +16,7 @@ namespace BCSH2_Kratky_semestralka_typA
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+            
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -38,7 +38,11 @@ namespace BCSH2_Kratky_semestralka_typA
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            
+
+			
+
+			app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();

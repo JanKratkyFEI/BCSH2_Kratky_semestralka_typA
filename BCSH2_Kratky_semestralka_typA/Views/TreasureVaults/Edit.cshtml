@@ -1,0 +1,19 @@
+﻿@model TreasureVault
+
+<h2>Upravit Pokladnici</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="GuildId">Gilda</label>
+        <select id="GuildId" asp-for="GuildId" asp-items="ViewBag.Guilds" class="form-control">
+            <option value="">Vyberte gildu</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="GoldAmount">Počet zlatých mincí</label>
+        <input type="number" class="form-control" asp-for="GoldAmount" step="0.01" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Uložit změny</button>
+</form>
+

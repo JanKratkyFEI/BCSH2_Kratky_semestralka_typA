@@ -72,5 +72,60 @@ namespace BCSH2_Kratky_semestralka_typA.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-	}
+        // GET: TreasureVaults/Edit/5
+        public IActionResult Edit(int id)
+        {
+            var treasureVault = _context.TreasureVaults.Find(id);
+            if (treasureVault == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Guilds = new SelectList(_context.Guilds.ToList(), "Id_Guild", "Name", treasureVault.GuildId);
+            return View(treasureVault);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(TreasureVault treasureVault)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Update(treasureVault);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Guilds = new SelectList(_context.Guilds.ToList(), "Id_Guild", "Name", treasureVault.GuildId);
+            return View(treasureVault);
+        }
+
+        // GET: TreasureVaults/Delete/5
+        public IActionResult Delete(int id)
+        {
+            var treasureVault = _context.TreasureVaults.Include(tv => tv.Guild).FirstOrDefault(tv => tv.Id == id);
+            if (treasureVault == null)
+            {
+                return NotFound();
+            }
+
+            return View(treasureVault);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var treasureVault = _context.TreasureVaults.Find(id);
+            if (treasureVault != null)
+            {
+                _context.TreasureVaults.Remove(treasureVault);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+    }
 }

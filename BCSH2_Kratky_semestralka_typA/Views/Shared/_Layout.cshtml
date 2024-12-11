@@ -1,5 +1,11 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
+
+
+
+
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,37 +52,26 @@
 								<li><a class="dropdown-item" asp-controller="TreasureVaults" asp-action="Create">Přidat Pokladnici</a></li>
 							</ul>
 						</li>
+						
 
-						<!-- Dropdown pro Editovat -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="editDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Editovat
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="editDropdown">
-								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Editovat Gildu</a></li>
-								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Editovat Člena</a></li>
-								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Editovat Quest</a></li>
-								<li><a class="dropdown-item" asp-controller="TreasureVault" asp-action="Index">Editovat Pokladnici</a></li>
-							</ul>
-						</li>
-
-						<!-- Dropdown pro Smazat -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="deleteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Smazat
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="deleteDropdown">
-								<li><a class="dropdown-item" asp-controller="Guilds" asp-action="Index">Smazat Gildu</a></li>
-								<li><a class="dropdown-item" asp-controller="Members" asp-action="Index">Smazat Člena</a></li>
-								<li><a class="dropdown-item" asp-controller="Quests" asp-action="Index">Smazat Quest</a></li>
-								<li><a class="dropdown-item" asp-controller="TreasureVault" asp-action="Index">Smazat Pokladnici</a></li>
-							</ul>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
+
+	@* <!-- Audio element a kontrola hudby -->
+	<audio id="backgroundMusic" autoplay loop>
+		<source src="~/Audio/Eventide.mp3" type="audio/mpeg">
+		Váš prohlížeč nepodporuje přehrávání audia.
+	</audio>
+	<div id="musicControl" style="position: fixed; top: 10px; right: 10px;">
+		<button id="musicToggle" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">
+			🎵
+		</button>
+	</div> *@
+
 
 	<div class="container">
 		<main role="main" class="pb-3">
@@ -92,6 +87,34 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<iframe src="/audio/music.html" style"=display: none;" id="musicFrame"></iframe>
+	<div id="musicControl" style="position: fixed; top: 10px; right: 10px;">
+		<button id="musicToggle" style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">
+			🎵
+		</button>
+	</div>
+	<script>
+		const musicFrame = document.getElementById('musicFrame');
+		const musicToggle = document.getElementById('musicToggle');
+
+		musicToggle.addEventListener('click', () => {
+			const music = musicFrame.contentWindow.document.getElementById('backgroundMusic');
+			if (music.paused) {
+				music.play();
+				musicToggle.textContent = "🎵"; // Zapnuto
+			} else {
+				music.pause();
+				musicToggle.textContent = "🔇"; // Vypnuto
+			}
+		});
+	</script>
+
+	
+	
+
+
+
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

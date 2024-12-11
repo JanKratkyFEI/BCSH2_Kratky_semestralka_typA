@@ -1,0 +1,16 @@
+﻿@model TreasureVault
+
+<h2>Smazat Pokladnici</h2>
+
+<p>Opravdu chcete smazat následující pokladnici?</p>
+
+<div>
+    <p><strong>Gilda:</strong> @Model.Guild?.Name</p>
+    <p><strong>Počet zlatých mincí:</strong> @Model.GoldAmount</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Smazat</button>
+    <a asp-action="Index" class="btn btn-secondary">Zrušit</a>
+</form>

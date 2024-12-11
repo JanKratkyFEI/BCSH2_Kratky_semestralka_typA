@@ -7,12 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audio\Eventide.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Audio\Eventide.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\Transactions\" />
     <Folder Include="Views\Treasures\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\audio\Eventide.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
